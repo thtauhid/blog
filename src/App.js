@@ -1,72 +1,23 @@
-import React, { useEffect, useState } from "react"
-import { Layout, Card } from "antd"
-import { Link, Route } from "react-router-dom"
-import Admin from "./Admin"
-import api from "./api"
-
+import React from "react"
+import { Layout } from "antd"
+import { Route } from "react-router-dom"
+import CreatePost from "./CreatePost"
+import PostList from "./PostList"
+import SinglePost from "./SinglePost"
+import HomePage from "./HomePage"
 const { Content, Footer } = Layout
 
-const Post = ({ title, content, id }) => {
+const Routes = () => {
   return (
     <>
-      <Card
-        title={title}
-        extra={<Link to={`/post/${id}`}>Read More</Link>}
-        style={{ marginBottom: "20px" }}
-      >
-        {content}
-      </Card>
+      <Route path="/" exact component={HomePage} />
+      <Route path="/post/:id" component={SinglePost} />
+      <Route path="/admin" exact component={PostList} />
+      <Route path="/admin/create" component={CreatePost} />
     </>
   )
 }
-
-const SinglePost = (props) => {
-  const id = props.match.params.id
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-
-  useEffect(() => {
-    api
-      .getSinglePost(id)
-
-      .then((res) => {
-        setTitle(res.data.title)
-        setContent(res.data.content)
-      })
-
-      .catch((err) => console.log(err))
-  }, [id])
-  return (
-    <>
-      <Card title={title}>{content}</Card>
-    </>
-  )
-}
-
-const HomePage = () => {
-  const [allPost, setAllPost] = useState([""])
-  useEffect(() => {
-    api
-      .getAllPost()
-
-      .then((posts) => {
-        const allPost = posts.map((post) => {
-          const { id: key } = post.ref["@ref"]
-          const { title, content } = post.data
-          return {
-            key,
-            title,
-            content,
-          }
-        })
-
-        setAllPost(allPost)
-        console.log(allPost)
-      })
-
-      .catch((err) => console.log(err))
-  }, [])
-
+const App = () => {
   return (
     <>
       <Layout>
@@ -76,9 +27,8 @@ const HomePage = () => {
             style={{ padding: "24px 0" }}
           >
             <Content style={{ padding: "0 24px", minHeight: 280 }}>
-              {allPost.map((p) => (
-                <Post title={p.title} id={p.key} content={p.content} />
-              ))}
+              {/* Future user authentication goes here */}
+              <Routes />
             </Content>
           </Layout>
         </Content>
@@ -86,17 +36,6 @@ const HomePage = () => {
           {"Made with <3 by Tauhid"}
         </Footer>
       </Layout>
-    </>
-  )
-}
-const App = () => {
-  return (
-    <>
-      <Route path="/" exact component={HomePage} />
-      <Route path="/post/:id" component={SinglePost} />
-      <Route path="/admin" exact component={Admin} />
-      {/* <Route path="/admin/create" component /> */}
-      {/* <Route path="/admin/edit/:id" component /> */}
     </>
   )
 }
