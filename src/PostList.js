@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { Layout, Input, Table } from "antd"
+import { Table } from "antd"
 import { Link } from "react-router-dom"
 import api from "./api"
-
-const { Content, Footer } = Layout
-const { TextArea } = Input
 
 const PostList = () => {
   const [allPost, setAllPost] = useState([""])
