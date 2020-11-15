@@ -10,13 +10,13 @@ exports.handler = async (event, context) => {
     .query(q.Paginate(q.Match(q.Ref("indexes/posts"))))
 
     .then((res) => {
-      const donorRefs = res.data
-      const getAllDonorQuery = donorRefs.map((ref) => {
+      const postRefs = res.data
+      const getAllPost = postRefs.map((ref) => {
         return q.Get(ref)
       })
 
       return client
-        .query(getAllDonorQuery)
+        .query(getAllPost)
 
         .then((res) => {
           return {
