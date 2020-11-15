@@ -53,8 +53,8 @@ const CreatePost = () => {
             Submit
           </Button>
         </Form.Item>
-        {success ? <Alert message="Donor added" type="success" /> : ""}
-        {failure ? <Alert message="Failed to add donor" type="error" /> : ""}
+        {success ? <Alert message="Post added" type="success" /> : ""}
+        {failure ? <Alert message="Failed to create post" type="error" /> : ""}
       </Form>
     </>
   )
