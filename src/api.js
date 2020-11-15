@@ -22,6 +22,15 @@ const getSinglePost = (id) => {
   })
 }
 
+const deletePost = (id) => {
+  return fetch("/.netlify/functions/deletePost", {
+    body: JSON.stringify(id),
+    method: "POST",
+  }).then((res) => {
+    return res.json()
+  })
+}
+
 // const createDonation = (data) => {
 // 	return fetch('/.netlify/functions/createDonation', {
 // 		body: JSON.stringify(data),
@@ -41,4 +50,5 @@ export default {
   createPost: createPost,
   getAllPost: getAllPost,
   getSinglePost: getSinglePost,
+  deletePost: deletePost,
 }

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
-import { Table } from "antd"
+import { Table, Alert, Divider } from "antd"
 import { Link } from "react-router-dom"
 import api from "./api"
 
 const PostList = () => {
   const [allPost, setAllPost] = useState([""])
+  const [deleted, setDeleted] = useState(false)
+
   useEffect(() => {
     api
       .getAllPost()
@@ -50,13 +52,38 @@ const PostList = () => {
       dataIndex: "delete",
       key: "delete",
       render: (text, record) => (
-        <Link to={`/delete/${record.key}`}>Delete</Link>
+        <button
+          onClick={() => {
+            api
+              .deletePost(record.key)
+
+              .then((res) => {
+                console.log(res)
+                setDeleted(true)
+              })
+
+              .catch((err) => {
+                console.log(err)
+              })
+          }}
+        >
+          Delete
+        </button>
       ),
     },
   ]
 
   return (
     <>
+      {deleted ? (
+        <Alert
+          message="Post Deleted!"
+          type="error"
+          style={{ marginBottom: "10px" }}
+        />
+      ) : (
+        ""
+      )}
       <Table columns={columns} dataSource={allPost} />
     </>
   )
