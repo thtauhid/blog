@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Layout } from "antd"
 import { Route } from "react-router-dom"
+import { BoxLoading } from "react-loadingg"
 import CreatePost from "./CreatePost"
 import UpdatePost from "./UpdatePost"
 import PostList from "./PostList"
@@ -20,6 +21,10 @@ const Routes = () => {
   )
 }
 const App = () => {
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    setLoaded(true)
+  }, [])
   return (
     <>
       <Layout>
@@ -30,7 +35,7 @@ const App = () => {
           >
             <Content style={{ padding: "0 24px", minHeight: 280 }}>
               {/* Future user authentication goes here */}
-              <Routes />
+              {loaded ? <Routes /> : <BoxLoading />}
             </Content>
           </Layout>
         </Content>
