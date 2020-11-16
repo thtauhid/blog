@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Card } from "antd"
+import { Card, Button } from "antd"
 import { Link } from "react-router-dom"
 import api from "./api"
 
@@ -8,7 +8,11 @@ const Post = ({ title, content, id }) => {
     <>
       <Card
         title={title}
-        extra={<Link to={`/post/${id}`}>Read More</Link>}
+        extra={
+          <Link to={`/post/${id}`}>
+            <Button type="primary">Read More</Button>
+          </Link>
+        }
         style={{ marginBottom: "20px" }}
       >
         {content}

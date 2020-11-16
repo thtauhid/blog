@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Table, Alert, Divider } from "antd"
+import { Table, Alert, Button } from "antd"
 import { Link } from "react-router-dom"
 import api from "./api"
 
@@ -39,14 +39,20 @@ const PostList = () => {
       title: "View",
       dataIndex: "view",
       key: "view",
-      render: (text, record) => <Link to={`/post/${record.key}`}>View</Link>,
+      render: (text, record) => (
+        <Link to={`/post/${record.key}`}>
+          <Button>View</Button>
+        </Link>
+      ),
     },
     {
       title: "Update",
       dataIndex: "update",
       key: "update",
       render: (text, record) => (
-        <Link to={`/update/${record.key}`}>Update</Link>
+        <Link to={`/update/${record.key}`}>
+          <Button type="primary">Update</Button>
+        </Link>
       ),
     },
     {
@@ -54,7 +60,8 @@ const PostList = () => {
       dataIndex: "delete",
       key: "delete",
       render: (text, record) => (
-        <button
+        <Button
+          danger
           onClick={() => {
             api
               .deletePost(record.key)
@@ -70,7 +77,7 @@ const PostList = () => {
           }}
         >
           Delete
-        </button>
+        </Button>
       ),
     },
   ]
