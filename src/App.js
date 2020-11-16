@@ -2,6 +2,7 @@ import React from "react"
 import { Layout } from "antd"
 import { Route } from "react-router-dom"
 import CreatePost from "./CreatePost"
+import UpdatePost from "./UpdatePost"
 import PostList from "./PostList"
 import SinglePost from "./SinglePost"
 import HomePage from "./HomePage"
@@ -12,6 +13,7 @@ const Routes = () => {
     <>
       <Route path="/" exact component={HomePage} />
       <Route path="/post/:id" component={SinglePost} />
+      <Route path="/update/:id" component={UpdatePost} />
       <Route path="/admin" exact component={PostList} />
       <Route path="/admin/create" component={CreatePost} />
     </>

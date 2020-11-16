@@ -7,6 +7,15 @@ const createPost = (data) => {
   })
 }
 
+const updatePost = (id, data) => {
+  return fetch("/.netlify/functions/updatePost", {
+    body: JSON.stringify([id, data]),
+    method: "POST",
+  }).then((res) => {
+    return res.json()
+  })
+}
+
 const getAllPost = () => {
   return fetch("/.netlify/functions/getAllPost").then((res) => {
     return res.json()
@@ -31,23 +40,9 @@ const deletePost = (id) => {
   })
 }
 
-// const createDonation = (data) => {
-// 	return fetch('/.netlify/functions/createDonation', {
-// 		body: JSON.stringify(data),
-// 		method: 'POST',
-// 	}).then((res) => {
-// 		return res.json()
-// 	})
-// }
-
-// const getDonations = () => {
-// 	return fetch('/.netlify/functions/allDonation').then((res) => {
-// 		return res.json()
-// 	})
-// }
-
 export default {
   createPost: createPost,
+  updatePost: updatePost,
   getAllPost: getAllPost,
   getSinglePost: getSinglePost,
   deletePost: deletePost,

@@ -42,10 +42,12 @@ const PostList = () => {
       render: (text, record) => <Link to={`/post/${record.key}`}>View</Link>,
     },
     {
-      title: "Edit",
-      dataIndex: "edit",
-      key: "edit",
-      render: (text, record) => <Link to={`/edit/${record.key}`}>Edit</Link>,
+      title: "Update",
+      dataIndex: "update",
+      key: "update",
+      render: (text, record) => (
+        <Link to={`/update/${record.key}`}>Update</Link>
+      ),
     },
     {
       title: "Delete",
