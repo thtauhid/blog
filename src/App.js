@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { Layout } from "antd"
-import { Route } from "react-router-dom"
+import { Layout, Button } from "antd"
+import { Route, Link } from "react-router-dom"
 import { BoxLoading } from "react-loadingg"
 import CreatePost from "./CreatePost"
 import UpdatePost from "./UpdatePost"
@@ -15,7 +15,18 @@ const Routes = () => {
       <Route path="/" exact component={HomePage} />
       <Route path="/post/:id" component={SinglePost} />
       <Route path="/update/:id" component={UpdatePost} />
-      <Route path="/admin" exact component={PostList} />
+      <Route
+        path="/admin"
+        exact
+        render={() => (
+          <>
+            <Button type="primary" style={{ marginBottom: "10px" }}>
+              <Link to="/admin/create">Create Post</Link>
+            </Button>
+            <PostList />
+          </>
+        )}
+      />
       <Route path="/admin/create" component={CreatePost} />
     </>
   )
