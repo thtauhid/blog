@@ -41,11 +41,11 @@ const deletePost = (id) => {
 }
 
 const api = {
-  createPost: createPost,
-  updatePost: updatePost,
-  getAllPost: getAllPost,
-  getSinglePost: getSinglePost,
-  deletePost: deletePost,
+  createPost,
+  updatePost,
+  getAllPost,
+  getSinglePost,
+  deletePost,
 }
 
 export default api
